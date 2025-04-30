@@ -15,8 +15,10 @@
 # Sobre o projet Know Your Fan. 
 Estrututura e funcionalidades
 - Página inicial com registro/login
-- Perfil de usuário (dados pessoais, interesses)
+- Perfil de usuário (dados pessoais, interesses, edição de informações e preferências)
 - Upload de documentos para verificação
+- Pagina de Eventos para acompanhar campeonatos
+- Uma pagina de Ofertas dedicadas ao usuario que tera cupons, produtos em oferta e etc
 - Conexão com redes sociais
 - Compartilhamento de perfis de plataformas de e-sports
 - Dashboard personalizado com recomendações
