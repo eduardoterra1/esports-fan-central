@@ -12,7 +12,7 @@
     - Vincular redes sociais ao perfil do usuário, permitindo leitura de interações, páginas seguidas e atividades relacionadas a organizações de e-sports como a FURIA.
     - Compartilhar links de perfis em sites de e-sports e validar, utilizando AI, que o conteúdo é relevante ao perfil do usuário.
 
-# Sobre o projet Know Your Fan. 
+# Sobre o projeto Know Your Fan
 Estrututura e funcionalidades
 - Página inicial com registro/login
 - Perfil de usuário (dados pessoais, interesses, edição de informações e preferências)
