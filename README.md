@@ -1,73 +1,49 @@
-# Welcome to your Lovable project
+# Bem vindo ao projeto Know Your Fan da FURIA!
 
-## Project info
+-Este projeto foi desenvolvido como parte de uma lista de desafios tecnicos, sendo o desafio Know Your Fan o segundo desafio. Abaixo teremos as informações gerais do projeto.
 
-**URL**: https://lovable.dev/projects/02d1fa61-3af7-423e-9a17-bf3c174095e0
+## Informações do projeto
 
-## How can I edit this code?
+# Challenge #2: Know Your Fan
+1. Objetivo: Desenvolver um app ou solução que colete o máximo de informações sobre você mesmo como um fã de esports. Know Your Fan é uma estratégia bem utilizada por clubes para conhecer mais do fã e assim oferecer experiências e serviços exclusivos.
+2. Crie uma solução que permita:
+    - Coletar dados básicos, como nome, endereço, CPF e informações sobre interesses, atividades, eventos e compras relacionados ao último ano.
+    - Realizar upload de documentos e validar a identificação da pessoa utilizando AI.
+    - Vincular redes sociais ao perfil do usuário, permitindo leitura de interações, páginas seguidas e atividades relacionadas a organizações de e-sports como a FURIA.
+    - Compartilhar links de perfis em sites de e-sports e validar, utilizando AI, que o conteúdo é relevante ao perfil do usuário.
 
-There are several ways of editing your application.
+# Sobre o projet Know Your Fan. 
+Estrututura e funcionalidades
+- Página inicial com registro/login
+- Perfil de usuário (dados pessoais, interesses)
+- Upload de documentos para verificação
+- Conexão com redes sociais
+- Compartilhamento de perfis de plataformas de e-sports
+- Dashboard personalizado com recomendações
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/02d1fa61-3af7-423e-9a17-bf3c174095e0) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Para iniciar o projeto:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Etapa1: Clonar o repositorio usando a URL do git.
+git clone <SUA_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Etapa 2: Navegue para diretorio do projeto.
+cd <SEU_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
+# Etapa 3: Instale as dependências necessárias. 
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Etapa 4: Inicie o servidor de desenvolvilmento com auto-realoading e prévia instantânia. 
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Quais tecnologias foram usadas neste projeto?
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Este projeto foi construido com:
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
+- Lovable (I.A)
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/02d1fa61-3af7-423e-9a17-bf3c174095e0) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
