@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,8 +9,34 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
+import EditProfileModal from '@/components/profile/EditProfileModal';
+import AvatarEditModal from '@/components/profile/AvatarEditModal';
+import { useProfileData, availableGames, availableTeams } from '@/hooks/useProfileData';
 
 const Profile = () => {
+  const {
+    profileData,
+    isEditing,
+    isAvatarEditing,
+    handleEditProfile,
+    handleSaveProfile,
+    setIsEditing,
+    handleEditAvatar,
+    handleSaveAvatar,
+    handleCancelAvatar
+  } = useProfileData();
+
+  // Helper function to get game and team names from IDs
+  const getGameNameById = (id: string) => {
+    const game = availableGames.find(g => g.id === id);
+    return game ? game.name : id;
+  };
+
+  const getTeamNameById = (id: string) => {
+    const team = availableTeams.find(t => t.id === id);
+    return team ? team.name : id;
+  };
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
@@ -22,13 +47,14 @@ const Profile = () => {
               <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
                 <div className="relative">
                   <Avatar className="h-24 w-24">
-                    <AvatarImage src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Usuário" />
-                    <AvatarFallback>FÃ</AvatarFallback>
+                    <AvatarImage src={profileData.avatarUrl} alt={profileData.name} />
+                    <AvatarFallback>{profileData.name.substring(0, 2).toUpperCase()}</AvatarFallback>
                   </Avatar>
                   <Button 
                     size="icon" 
                     variant="outline" 
                     className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-background"
+                    onClick={handleEditAvatar}
                   >
                     <Edit className="h-4 w-4" />
                   </Button>
@@ -37,15 +63,18 @@ const Profile = () => {
                 <div className="text-center md:text-left flex-1">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                     <div>
-                      <h2 className="text-2xl font-bold">João Silva</h2>
-                      <p className="text-muted-foreground">fan@exemplo.com</p>
+                      <h2 className="text-2xl font-bold">{profileData.name}</h2>
+                      <p className="text-muted-foreground">{profileData.email}</p>
                       <div className="flex flex-wrap gap-2 justify-center md:justify-start mt-2">
                         <Badge className="bg-esports-purple">Nível 3</Badge>
                         <Badge variant="outline">São Paulo, SP</Badge>
                         <Badge variant="outline" className="bg-green-500/10">Verificado</Badge>
                       </div>
                     </div>
-                    <Button className="bg-esports-purple hover:bg-esports-purple/80">
+                    <Button 
+                      className="bg-esports-purple hover:bg-esports-purple/80"
+                      onClick={handleEditProfile}
+                    >
                       <Edit className="h-4 w-4 mr-2" /> Editar perfil
                     </Button>
                   </div>
@@ -96,23 +125,23 @@ const Profile = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <h3 className="text-sm font-medium text-muted-foreground">Nome completo</h3>
-                      <p>João Silva</p>
+                      <p>{profileData.name}</p>
                     </div>
                     <div className="space-y-2">
                       <h3 className="text-sm font-medium text-muted-foreground">Email</h3>
-                      <p>fan@exemplo.com</p>
+                      <p>{profileData.email}</p>
                     </div>
                     <div className="space-y-2">
                       <h3 className="text-sm font-medium text-muted-foreground">CPF</h3>
-                      <p>123.456.789-00</p>
+                      <p>{profileData.cpf}</p>
                     </div>
                     <div className="space-y-2">
                       <h3 className="text-sm font-medium text-muted-foreground">Data de nascimento</h3>
-                      <p>15/05/1995</p>
+                      <p>{new Date(profileData.birthdate).toLocaleDateString('pt-BR')}</p>
                     </div>
                     <div className="space-y-2">
                       <h3 className="text-sm font-medium text-muted-foreground">Endereço</h3>
-                      <p>Rua Exemplo, 123 - São Paulo, SP</p>
+                      <p>{profileData.address}</p>
                     </div>
                   </div>
 
@@ -124,29 +153,41 @@ const Profile = () => {
                     <div className="space-y-2">
                       <h4 className="text-sm font-medium text-muted-foreground">Jogos favoritos</h4>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline" className="bg-esports-purple/10">Counter-Strike 2</Badge>
-                        <Badge variant="outline" className="bg-esports-purple/10">League of Legends</Badge>
-                        <Badge variant="outline" className="bg-esports-purple/10">Valorant</Badge>
+                        {profileData.games.map(gameId => (
+                          <Badge 
+                            key={gameId} 
+                            variant="outline" 
+                            className="bg-esports-purple/10"
+                          >
+                            {getGameNameById(gameId)}
+                          </Badge>
+                        ))}
                       </div>
                     </div>
                     
                     <div className="space-y-2">
                       <h4 className="text-sm font-medium text-muted-foreground">Times favoritos</h4>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline" className="bg-esports-blue/10">FURIA Esports</Badge>
-                        <Badge variant="outline" className="bg-esports-blue/10">LOUD</Badge>
-                        <Badge variant="outline" className="bg-esports-blue/10">Team Liquid</Badge>
+                        {profileData.teams.map(teamId => (
+                          <Badge 
+                            key={teamId} 
+                            variant="outline" 
+                            className="bg-esports-blue/10"
+                          >
+                            {getTeamNameById(teamId)}
+                          </Badge>
+                        ))}
                       </div>
                     </div>
                     
                     <div className="space-y-2">
                       <h4 className="text-sm font-medium text-muted-foreground">Eventos que participou</h4>
-                      <p>ESL One Rio, CBLOL Finals 2024</p>
+                      <p>{profileData.events}</p>
                     </div>
                     
                     <div className="space-y-2">
                       <h4 className="text-sm font-medium text-muted-foreground">Produtos adquiridos</h4>
-                      <p>Jersey FURIA, Mouse Gamer HyperX</p>
+                      <p>{profileData.purchases}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -266,7 +307,7 @@ const Profile = () => {
                       <Button variant="outline" className="justify-start" onClick={() => toast.success("YouTube conectado!")}>
                         <div className="h-5 w-5 mr-2">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor">
-                            <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
+                            <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821 11.412 42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
                           </svg>
                         </div>
                         Conectar YouTube
@@ -338,11 +379,39 @@ const Profile = () => {
           </Tabs>
         </div>
       </div>
+
+      {/* Edit Profile Modal */}
+      <EditProfileModal 
+        isOpen={isEditing}
+        onClose={() => setIsEditing(false)}
+        onSave={handleSaveProfile}
+        initialData={{
+          name: profileData.name,
+          email: profileData.email,
+          cpf: profileData.cpf,
+          birthdate: profileData.birthdate,
+          address: profileData.address,
+          games: profileData.games,
+          teams: profileData.teams,
+          events: profileData.events,
+          purchases: profileData.purchases
+        }}
+        availableGames={availableGames}
+        availableTeams={availableTeams}
+      />
+
+      {/* Avatar Edit Modal */}
+      <AvatarEditModal
+        isOpen={isAvatarEditing}
+        onClose={handleCancelAvatar}
+        onSave={handleSaveAvatar}
+        currentAvatarUrl={profileData.avatarUrl}
+      />
     </Layout>
   );
 };
 
-// Adicione o componente Check para o perfil
+// Add Check component for Profile
 const Check = ({ className }: { className?: string }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
@@ -358,7 +427,7 @@ const Check = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Adicione um componente Instagram para o perfil
+// Add Instagram component for Profile 
 const Instagram = ({ className }: { className?: string }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
