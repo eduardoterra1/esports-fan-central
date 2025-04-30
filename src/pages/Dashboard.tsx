@@ -98,7 +98,7 @@ const Dashboard = () => {
     {
       id: 1,
       title: "Preparação mental para jogadores de CS2 - Como os pros fazem",
-      type: "video",
+      type: "video" as const,
       imageUrl: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       creator: "FURIA Academy",
       creatorAvatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
@@ -109,7 +109,7 @@ const Dashboard = () => {
     {
       id: 2,
       title: "LOUD vs Pain - Melhores momentos CBLOL 2025",
-      type: "video",
+      type: "video" as const,
       imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       creator: "CBLOL Official",
       creatorAvatar: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
@@ -118,7 +118,7 @@ const Dashboard = () => {
     {
       id: 3,
       title: "Treino da FURIA para o Major",
-      type: "stream",
+      type: "stream" as const,
       imageUrl: "https://images.unsplash.com/photo-1603481546238-487240415921?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       creator: "FURIA Official",
       creatorAvatar: "https://images.unsplash.com/photo-1566753323558-f4e0952af115?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
@@ -126,7 +126,7 @@ const Dashboard = () => {
     {
       id: 4,
       title: "Análise: O meta atual de Valorant e como se adaptar",
-      type: "article",
+      type: "article" as const,
       imageUrl: "https://images.unsplash.com/photo-1580327344181-c1163234e5a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       creator: "Esports Analytics",
       creatorAvatar: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",

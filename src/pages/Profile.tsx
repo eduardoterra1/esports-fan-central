@@ -4,7 +4,7 @@ import Layout from '@/components/layout/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { User, FileCheck, Link as LinkIcon, Gamepad, Edit, Star } from 'lucide-react';
+import { User, FileCheck, Link as LinkIcon, Gamepad, Edit, Star, Twitter } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
